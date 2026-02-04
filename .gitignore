@@ -1,0 +1,18 @@
+.DS_Store
+.idea/
+*.log
+
+# Gradle
+.gradle/
+build/
+
+# Node
+node_modules/
+.output/
+.nuxt/
+
+# Docker
+docker-compose.override.yml
+
+# Env
+.env

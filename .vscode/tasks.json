@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "dev-up",
+      "type": "shell",
+      "command": "./scripts/dev-up.sh",
+      "problemMatcher": []
+    },
+    {
+      "label": "run-api",
+      "type": "shell",
+      "command": "./scripts/run-api.sh",
+      "problemMatcher": []
+    },
+    {
+      "label": "run-web",
+      "type": "shell",
+      "command": "./scripts/run-web.sh",
+      "problemMatcher": []
+    },
+    {
+      "label": "run-all",
+      "type": "shell",
+      "command": "./scripts/run-all.sh",
+      "problemMatcher": []
+    }
+  ]
+}
