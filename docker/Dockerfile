@@ -1,14 +1,14 @@
-# Base Image: Eclipse Temurin (Adoptium) JDK 21 (LTS) + Ubuntu Jammy
+# ベースイメージ: Eclipse Temurin (Adoptium) JDK 21 (LTS) + Ubuntu Jammy
 FROM eclipse-temurin:21-jdk-jammy
 
-# Prevent interactive prompts during package installation
+# パッケージインストール時の対話的なプロンプトを防止
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Timezone & Locale settings
+# タイムゾーンとロケールの設定
 ENV TZ=Asia/Tokyo
 ENV LANG=C.UTF-8
 
-# Install necessary packages
+# 必要なパッケージのインストール
 RUN set -eux && \
     apt-get update && \
     apt-get install -y \
@@ -33,9 +33,9 @@ RUN set -eux && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-###### Kotlin Compiler Installation ######
+###### Kotlin コンパイラのインストール ######
 
-# Kotlin Version
+# Kotlin バージョン
 ARG KOTLIN_VERSION=2.1.10
 ARG BASE_URL_KOTLIN=https://github.com/JetBrains/kotlin/releases/download/
 
@@ -47,9 +47,9 @@ RUN set -eux && \
     unzip /tmp/kotlin-compiler.zip -d /opt/kotlin && \
     rm /tmp/kotlin-compiler.zip
 
-###### Gradle Installation ######
+###### Gradle のインストール ######
 
-# Gradle Version
+# Gradle バージョン
 ARG GRADLE_VERSION=8.13
 ARG BASE_URL_GRADLE=https://services.gradle.org/distributions
 
@@ -61,19 +61,19 @@ RUN set -eux && \
     unzip /tmp/gradle.zip -d /opt/gradle && \
     rm /tmp/gradle.zip
 
-###### act Installation ######
+###### act のインストール ######
 
 RUN set -eux && \
     curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | bash
 
-###### Node.js (LTS 22.x) Installation ######
+###### Node.js (LTS 22.x) のインストール ######
 RUN set -eux && \
     curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g pnpm
 
-# Working Directory
+# 作業ディレクトリ
 WORKDIR /workspace
 
-# VSCode DevContainer Environment Variable
+# VSCode DevContainer 環境変数
 ENV DEVCONTAINER=true

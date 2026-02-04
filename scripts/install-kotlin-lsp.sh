@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
 
-# Load .env if present (to get version if not in env)
+# .envが存在する場合、読み込む（環境変数にバージョンがない場合のため）
 if [ -f .env ]; then
   export $(grep -v '^#' .env | xargs)
 fi
 
-# Check if KOTLIN_LSP_VERSION is set
+# KOTLIN_LSP_VERSIONが設定されているか確認
 if [ -z "$KOTLIN_LSP_VERSION" ]; then
     echo "Error: KOTLIN_LSP_VERSION is not set."
     exit 1
@@ -29,7 +29,7 @@ echo "Downloading Kotlin LSP version $KOTLIN_LSP_VERSION for $LSP_ARCH from $VSI
 curl -L -o "$VSIX_FILE" "$VSIX_URL"
 
 echo "Installing Kotlin LSP..."
-# Check if 'code' command exists
+# 'code'コマンドが存在するか確認
 if command -v code >/dev/null 2>&1; then
     code --install-extension "$VSIX_FILE" --force
 else
@@ -37,8 +37,8 @@ else
 fi
 
 echo "Kotlin LSP setup complete."
-# We keep the file if code wasn't found so user can install it, or remove it?
-# Requirement says "Create DevContainer automatically install".
-# If code is not available in postCreateCommand, this might fail.
-# But assuming standard DevContainer, it should be fine.
+# codeコマンドが見つからない場合、ユーザーがインストールできるようにファイルを保持するか、削除するか？
+# 要件には「DevContainer作成時に自動インストール」とある。
+# postCreateCommandでcodeが利用できない場合、これは失敗する可能性がある。
+# しかし、標準的なDevContainerを想定すれば問題ないはず。
 rm -f "$VSIX_FILE"

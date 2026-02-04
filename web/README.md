@@ -1,10 +1,10 @@
 # Nuxt Minimal Starter
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+詳細については、[Nuxt ドキュメント](https://nuxt.com/docs/getting-started/introduction) を参照してください。
 
-## Setup
+## セットアップ
 
-Make sure to install dependencies:
+依存関係をインストールしてください:
 
 ```bash
 # npm
@@ -20,9 +20,9 @@ yarn install
 bun install
 ```
 
-## Development Server
+## 開発サーバー
 
-Start the development server on `http://localhost:3000`:
+`http://localhost:3000` で開発サーバーを起動します:
 
 ```bash
 # npm
@@ -38,9 +38,9 @@ yarn dev
 bun run dev
 ```
 
-## Production
+## 本番環境
 
-Build the application for production:
+本番環境用にアプリケーションをビルドします:
 
 ```bash
 # npm
@@ -56,7 +56,7 @@ yarn build
 bun run build
 ```
 
-Locally preview production build:
+本番ビルドをローカルでプレビューします:
 
 ```bash
 # npm
@@ -72,4 +72,4 @@ yarn preview
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+詳細については、[デプロイメントドキュメント](https://nuxt.com/docs/getting-started/deployment) を確認してください。

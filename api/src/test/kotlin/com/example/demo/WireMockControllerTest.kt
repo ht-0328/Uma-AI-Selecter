@@ -20,15 +20,15 @@ class WireMockControllerTest {
 
     @Test
     fun `ping should call wiremock and return response`() {
-        // Arrange
+        // 準備
         val expectedJson = """{"ok": true}"""
         server.expect(requestTo("http://test-wiremock/mock/ping"))
             .andRespond(withSuccess(expectedJson, MediaType.APPLICATION_JSON))
 
-        // Act
+        // 実行
         val result = controller.ping()
 
-        // Assert
+        // 検証
         assertEquals(mapOf("ok" to true), result)
     }
 }
