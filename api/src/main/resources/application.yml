@@ -14,6 +14,10 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+app:
+  wiremock:
+    base-url: ${WIREMOCK_BASE_URL:http://wiremock:8080}
+
 management:
   endpoints:
     web:

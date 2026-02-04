@@ -28,6 +28,7 @@
     *   **Web (Nuxt):** [http://localhost:3000](http://localhost:3000)
     *   **API (Spring Boot):** [http://localhost:8080/health](http://localhost:8080/health) -> Should return `OK`
     *   **WireMock:** [http://localhost:8082/mock/ping](http://localhost:8082/mock/ping) -> Should return `{ "ok": true }`
+    *   **API -> WireMock:** [http://localhost:8080/wiremock/ping](http://localhost:8080/wiremock/ping) -> Should return `{ "ok": true }`
 
 ### DB Migration (Flyway)
 
