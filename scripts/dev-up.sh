@@ -1,2 +1,2 @@
 #!/bin/bash
-docker compose -f docker/docker-compose.yml --env-file .env up -d --build
+docker compose -f docker/docker-compose.yml --env-file .env up -d db flyway wiremock

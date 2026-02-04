@@ -1,6 +1,5 @@
 .DS_Store
 .idea/
-.vscode/
 *.log
 
 # Gradle
@@ -17,6 +16,3 @@ docker-compose.override.yml
 
 # Env
 .env
-
-# Flyway
-flyway/conf/flyway.conf

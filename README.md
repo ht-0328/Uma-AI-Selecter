@@ -15,22 +15,27 @@
     cp .env.example .env
     ```
 3.  Click "Reopen in Container" when prompted, or run the command `Dev Containers: Reopen in Container`.
-4.  Once the Dev Container is built and loaded, run the following command in the terminal:
+4.  Once inside the Dev Container, start the core services (DB, Flyway, WireMock):
     ```bash
     ./scripts/dev-up.sh
     ```
-4.  Verify the services:
+5.  Start the applications using VS Code Tasks (Terminal -> Run Task...) or scripts:
+    *   **Run All:** `run-all` task or `./scripts/run-all.sh`
+    *   **Run API:** `run-api` task or `./scripts/run-api.sh`
+    *   **Run Web:** `run-web` task or `./scripts/run-web.sh`
+
+6.  Verify the services:
     *   **Web (Nuxt):** [http://localhost:3000](http://localhost:3000)
     *   **API (Spring Boot):** [http://localhost:8080/health](http://localhost:8080/health) -> Should return `OK`
     *   **WireMock:** [http://localhost:8082/mock/ping](http://localhost:8082/mock/ping) -> Should return `{ "ok": true }`
 
 ### DB Migration (Flyway)
 
-Migrations are automatically applied on startup.
+Migrations are automatically applied on startup (via `dev-up.sh`).
 
 **Adding a new migration:**
 1.  Add a new SQL file to `flyway/sql/` naming it `V2__Description.sql`, etc.
-2.  Restart the flyway service (or run `scripts/dev-up.sh` again):
+2.  Restart the flyway service:
     ```bash
     docker compose -f docker/docker-compose.yml restart flyway
     ```
