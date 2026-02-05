@@ -1,52 +1,52 @@
 # Uma-AI-Selecter
 
-## Development Environment Setup
+## 開発環境セットアップ
 
-### Prerequisites
+### 前提条件
 *   VS Code
 *   Docker
-*   Dev Containers extension
+*   Dev Containers 拡張機能
 
-### Quick Start
+### クイックスタート
 
-1.  Open this repository in VS Code.
-2.  Create `.env` file from example:
+1.  VS Code でこのリポジトリを開きます。
+2.  example から `.env` ファイルを作成します:
     ```bash
     cp .env.example .env
     ```
-3.  Click "Reopen in Container" when prompted, or run the command `Dev Containers: Reopen in Container`.
-4.  Once inside the Dev Container, start the core services (DB, Flyway, WireMock):
+3.  プロンプトが表示されたら「Reopen in Container」をクリックするか、コマンド `Dev Containers: Reopen in Container` を実行します。
+4.  Dev Container 内に入ったら、コアサービス（DB、Flyway、WireMock）を開始します:
     ```bash
     ./scripts/dev-up.sh
     ```
-5.  Start the applications using VS Code Tasks (Terminal -> Run Task...) or scripts:
-    *   **Run All:** `run-all` task or `./scripts/run-all.sh`
-    *   **Run API:** `run-api` task or `./scripts/run-api.sh`
-    *   **Run Web:** `run-web` task or `./scripts/run-web.sh`
+5.  VS Code タスク（Terminal -> Run Task...）またはスクリプトを使用してアプリケーションを開始します:
+    *   **Run All:** `run-all` タスク または `./scripts/run-all.sh`
+    *   **Run API:** `run-api` タスク または `./scripts/run-api.sh`
+    *   **Run Web:** `run-web` タスク または `./scripts/run-web.sh`
 
-6.  Verify the services:
+6.  サービスを確認します:
     *   **Web (Nuxt):** [http://localhost:3000](http://localhost:3000)
-    *   **API (Spring Boot):** [http://localhost:8080/health](http://localhost:8080/health) -> Should return `OK`
-    *   **WireMock:** [http://localhost:8082/mock/ping](http://localhost:8082/mock/ping) -> Should return `{ "ok": true }`
-    *   **API -> WireMock:** [http://localhost:8080/wiremock/ping](http://localhost:8080/wiremock/ping) -> Should return `{ "ok": true }`
+    *   **API (Spring Boot):** [http://localhost:8080/health](http://localhost:8080/health) -> `OK` が返るはずです
+    *   **WireMock:** [http://localhost:8082/mock/ping](http://localhost:8082/mock/ping) -> `{ "ok": true }` が返るはずです
+    *   **API -> WireMock:** [http://localhost:8080/wiremock/ping](http://localhost:8080/wiremock/ping) -> `{ "ok": true }` が返るはずです
 
-### DB Migration (Flyway)
+### DB マイグレーション (Flyway)
 
-Migrations are automatically applied on startup (via `dev-up.sh`).
+マイグレーションは起動時（`dev-up.sh` 経由）に自動的に適用されます。
 
-**Adding a new migration:**
-1.  Add a new SQL file to `flyway/sql/` naming it `V2__Description.sql`, etc.
-2.  Restart the flyway service:
+**新しいマイグレーションの追加:**
+1.  `flyway/sql/` に新しい SQL ファイルを追加し、`V2__Description.sql` などの名前を付けます。
+2.  flyway サービスを再起動します:
     ```bash
     docker compose -f docker/docker-compose.yml restart flyway
     ```
 
-**Resetting the database:**
-To delete all data and start fresh:
+**データベースのリセット:**
+すべてのデータを削除して最初からやり直す場合:
 ```bash
 ./scripts/dev-reset.sh
 ```
 
 ### Kotlin LSP
-The Kotlin LSP (from JetBrains/kotlin-lsp) is automatically installed as a VS Code extension inside the Dev Container.
-If it fails to install, check the logs or run `bash scripts/install-kotlin-lsp.sh` manually.
+Kotlin LSP（JetBrains/kotlin-lsp）は、Dev Container 内の VS Code 拡張機能として自動的にインストールされます。
+インストールに失敗した場合は、ログを確認するか、`bash scripts/install-kotlin-lsp.sh` を手動で実行してください。
