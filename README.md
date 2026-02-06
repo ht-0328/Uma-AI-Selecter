@@ -30,6 +30,22 @@
     *   **WireMock:** [http://localhost:8082/mock/ping](http://localhost:8082/mock/ping) -> `{ "ok": true }` が返るはずです
     *   **API -> WireMock:** [http://localhost:8080/wiremock/ping](http://localhost:8080/wiremock/ping) -> `{ "ok": true }` が返るはずです
 
+### Web (Nuxt) 開発
+
+Web アプリケーションを手動でセットアップ・起動する場合の手順:
+
+1.  Dev Container に入ります。
+2.  依存関係をインストールします:
+    ```bash
+    cd web && npm install
+    ```
+3.  開発サーバーを起動します:
+    ```bash
+    npm run dev
+    ```
+4.  ブラウザで確認します:
+    [http://localhost:3000](http://localhost:3000)
+
 ### DB マイグレーション (Flyway)
 
 マイグレーションは起動時（`dev-up.sh` 経由）に自動的に適用されます。
