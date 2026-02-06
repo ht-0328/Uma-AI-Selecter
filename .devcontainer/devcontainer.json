@@ -13,6 +13,7 @@
       ]
     }
   },
+  "initializeCommand": "sh -c 'if [ ! -f .env ]; then cp .env.example .env; fi' || cmd /c \"if not exist .env copy .env.example .env\"",
   "postCreateCommand": "bash scripts/install-kotlin-lsp.sh",
   "remoteUser": "vscode"
 }
