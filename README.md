@@ -26,6 +26,7 @@
 
 6.  サービスを確認します:
     *   **Web (Nuxt):** [http://localhost:3000](http://localhost:3000)
+    *   **Web -> API 疎通確認:** [http://localhost:3000/health](http://localhost:3000/health) -> `OK` が表示されるはずです
     *   **API (Spring Boot):** [http://localhost:8080/health](http://localhost:8080/health) -> `OK` が返るはずです
     *   **WireMock:** [http://localhost:8082/mock/ping](http://localhost:8082/mock/ping) -> `{ "ok": true }` が返るはずです
     *   **API -> WireMock:** [http://localhost:8080/wiremock/ping](http://localhost:8080/wiremock/ping) -> `{ "ok": true }` が返るはずです
