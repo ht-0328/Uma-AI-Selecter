@@ -1,4 +1,4 @@
-package com.example.demo
+package com.example.demo.wiremock.controller
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

@@ -11,6 +11,9 @@
 - Kotlin + Spring Boot を前提にする
 - 生成コードは必ず null safety を考慮する
 - 既存の設計を壊さないことを最優先する
+- API実装はモジュラーモノリス構成を必須とする
+    - 機能（モジュール）ごとにパッケージを分割する（例: `news`, `score`）
+    - 各モジュール配下に `controller` / `service` / `repository` / `dto` / `entity` / `client` を配置する
 
 ## コーディングルール
 - data class を優先して使う
