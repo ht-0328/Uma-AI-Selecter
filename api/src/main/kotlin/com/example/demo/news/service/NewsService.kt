@@ -2,21 +2,21 @@ package com.example.demo.news.service
 
 import com.example.demo.news.client.NewsClient
 import com.example.demo.news.entity.NewsItem
-import com.example.demo.news.repository.NewsItemRepository
+import com.example.demo.news.repository.NewsItemMapper
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class NewsService(
     private val newsClient: NewsClient,
-    private val newsItemRepository: NewsItemRepository
+    private val newsItemMapper: NewsItemMapper
 ) {
     @Transactional
     fun syncNews() {
         val newsList = newsClient.fetchNews()
 
         val newItems = newsList.filter {
-            !newsItemRepository.existsByTitle(it.title)
+            !newsItemMapper.existsByTitle(it.title)
         }.map {
             NewsItem(
                 title = it.title,
@@ -25,12 +25,10 @@ class NewsService(
             )
         }
 
-        if (newItems.isNotEmpty()) {
-            newsItemRepository.saveAll(newItems)
-        }
+        newItems.forEach { newsItemMapper.insert(it) }
     }
 
     fun getAllNews(): List<NewsItem> {
-        return newsItemRepository.findAll()
+        return newsItemMapper.findAll()
     }
 }

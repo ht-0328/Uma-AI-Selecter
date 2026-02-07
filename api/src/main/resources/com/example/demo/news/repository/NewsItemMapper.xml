@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.news.repository.NewsItemMapper">
+
+    <resultMap id="NewsItemResultMap" type="com.example.demo.news.entity.NewsItem">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Long"/>
+            <arg column="title" javaType="java.lang.String"/>
+            <arg column="content" javaType="java.lang.String"/>
+            <arg column="published_at" javaType="java.time.LocalDateTime"/>
+            <arg column="created_at" javaType="java.time.LocalDateTime"/>
+        </constructor>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.example.demo.news.entity.NewsItem">
+        INSERT INTO news_item (title, content, published_at, created_at)
+        VALUES (#{title}, #{content}, #{publishedAt}, #{createdAt})
+    </insert>
+
+    <select id="existsByTitle" resultType="boolean">
+        SELECT EXISTS(SELECT 1 FROM news_item WHERE title = #{title})
+    </select>
+
+    <select id="findAll" resultMap="NewsItemResultMap">
+        SELECT id, title, content, published_at, created_at
+        FROM news_item
+        ORDER BY published_at DESC
+    </select>
+
+</mapper>

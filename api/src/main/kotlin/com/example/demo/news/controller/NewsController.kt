@@ -1,25 +1,33 @@
 package com.example.demo.news.controller
 
-import com.example.demo.news.entity.NewsItem
+import com.example.demo.news.api.NewsApi
+import com.example.demo.news.model.NewsItem
 import com.example.demo.news.service.NewsService
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
+import com.example.demo.news.entity.NewsItem as NewsItemEntity
 
 @RestController
-@RequestMapping("/api/news")
 class NewsController(
     private val newsService: NewsService
-) {
+) : NewsApi {
 
-    @PostMapping("/sync")
-    fun sync() {
+    override fun syncNews(): ResponseEntity<Unit> {
         newsService.syncNews()
+        return ResponseEntity.ok().build()
     }
 
-    @GetMapping
-    fun getAll(): List<NewsItem> {
-        return newsService.getAllNews()
+    override fun getNews(): ResponseEntity<List<NewsItem>> {
+        val entities = newsService.getAllNews()
+        val items = entities.map { entity ->
+            NewsItem(
+                title = entity.title,
+                content = entity.content,
+                publishedAt = entity.publishedAt,
+                id = entity.id,
+                createdAt = entity.createdAt
+            )
+        }
+        return ResponseEntity.ok(items)
     }
 }
