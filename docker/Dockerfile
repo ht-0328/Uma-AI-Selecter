@@ -27,6 +27,7 @@ RUN set -eux && \
     postgresql-client \
     less \
     docker.io \
+    sudo \
     tzdata && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone && \
@@ -77,3 +78,16 @@ WORKDIR /workspace
 
 # VSCode DevContainer 環境変数
 ENV DEVCONTAINER=true
+
+# VS Code ユーザーの作成
+ARG USERNAME=vscode
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+
+# docker グループへの追加
+RUN usermod -aG docker $USERNAME
