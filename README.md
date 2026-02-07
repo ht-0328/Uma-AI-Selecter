@@ -32,6 +32,26 @@
     *   **API -> WireMock:** [http://localhost:8080/wiremock/ping](http://localhost:8080/wiremock/ping) -> `{ "ok": true }` が返るはずです
     *   **Web -> API -> WireMock:** [http://localhost:3000/wiremock](http://localhost:3000/wiremock) -> `{ "ok": true }` が表示されるはずです
 
+### ニュース機能の確認
+
+1.  WireMock:
+    ```bash
+    curl http://localhost:8082/external/news
+    # JSON配列が返るはずです
+    ```
+2.  API (同期):
+    ```bash
+    curl -X POST http://localhost:8080/api/news/sync
+    # 成功 (200 OK) が返るはずです
+    ```
+3.  API (一覧):
+    ```bash
+    curl http://localhost:8080/api/news
+    # 同期されたニュース一覧が返るはずです
+    ```
+4.  Web (Nuxt):
+    [http://localhost:3000/news](http://localhost:3000/news) にアクセスし、一覧が表示されることを確認します。「同期する」ボタンで更新も可能です。
+
 ### Web (Nuxt) 開発
 
 Web アプリケーションを手動でセットアップ・起動する場合の手順:
