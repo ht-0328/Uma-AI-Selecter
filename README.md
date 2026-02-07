@@ -30,6 +30,7 @@
     *   **API (Spring Boot):** [http://localhost:8080/health](http://localhost:8080/health) -> `OK` が返るはずです
     *   **WireMock:** [http://localhost:8082/mock/ping](http://localhost:8082/mock/ping) -> `{ "ok": true }` が返るはずです
     *   **API -> WireMock:** [http://localhost:8080/wiremock/ping](http://localhost:8080/wiremock/ping) -> `{ "ok": true }` が返るはずです
+    *   **Web -> API -> WireMock:** [http://localhost:3000/wiremock](http://localhost:3000/wiremock) -> `{ "ok": true }` が表示されるはずです
 
 ### Web (Nuxt) 開発
 
