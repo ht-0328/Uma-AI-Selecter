@@ -1,13 +1,15 @@
 export interface Horse {
   id: number
   name: string
-  speed: number
-  stamina: number
-  power: number
-  guts: number
-  wisdom: number
-  strategy: string
-  condition: number
+  gate_number: number
+  horse_number: number
+  jockey_name: string
+  last3f: number
+  position_score: number
+  gate_score: number
+  course_score: number
+  jockey_score: number
+  passing_order: string
 }
 
 export interface ScoredHorse extends Horse {
@@ -16,22 +18,26 @@ export interface ScoredHorse extends Horse {
 
 export const useRaceScoring = (horses: Ref<Horse[]>) => {
   const weights = reactive({
-    speed: 50,
-    stamina: 50,
-    power: 50,
-    guts: 50,
-    wisdom: 50
+    last3f: 5,
+    position: 5,
+    gate: 5,
+    course: 5,
+    jockey: 5
   })
 
   const scoredHorses = computed(() => {
     return horses.value.map(horse => {
-      const totalWeight = weights.speed + weights.stamina + weights.power + weights.guts + weights.wisdom
+      // Normalize last3f: assume 33.0 is best (10 pts), 36.0 is worst (0 pts)
+      const last3fScore = Math.max(0, Math.min(10, (36.0 - horse.last3f) / (36.0 - 33.0) * 10))
+
+      const totalWeight = weights.last3f + weights.position + weights.gate + weights.course + weights.jockey
+
       const score = totalWeight > 0 ? (
-        horse.speed * weights.speed +
-        horse.stamina * weights.stamina +
-        horse.power * weights.power +
-        horse.guts * weights.guts +
-        horse.wisdom * weights.wisdom
+        last3fScore * weights.last3f +
+        horse.position_score * weights.position +
+        horse.gate_score * weights.gate +
+        horse.course_score * weights.course +
+        horse.jockey_score * weights.jockey
       ) / totalWeight : 0
 
       return { ...horse, score }
