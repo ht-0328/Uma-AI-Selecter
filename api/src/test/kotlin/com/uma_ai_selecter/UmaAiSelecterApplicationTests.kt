@@ -1,4 +1,4 @@
-package com.ht0328.uma_ai_selecter
+package com.uma_ai_selecter
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

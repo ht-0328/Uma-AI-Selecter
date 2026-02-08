@@ -1,4 +1,4 @@
-package com.ht0328.uma_ai_selecter.health.controller
+package com.uma_ai_selecter.health.controller
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController

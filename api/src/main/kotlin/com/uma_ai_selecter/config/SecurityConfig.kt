@@ -1,4 +1,4 @@
-package com.ht0328.uma_ai_selecter.config
+package com.uma_ai_selecter.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

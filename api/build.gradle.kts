@@ -7,7 +7,7 @@ plugins {
 	id("org.openapi.generator") version "7.11.0"
 }
 
-group = "com.ht0328.uma_ai_selecter"
+group = "com.uma_ai_selecter"
 version = "0.0.1-SNAPSHOT"
 description = "Uma AI Selecter API"
 
@@ -64,8 +64,8 @@ openApiGenerate {
 	generatorName.set("kotlin-spring")
 	inputSpec.set("$rootDir/src/main/resources/openapi.yml")
 	outputDir.set("$buildDir/generated")
-	apiPackage.set("com.ht0328.uma_ai_selecter.api")
-	modelPackage.set("com.ht0328.uma_ai_selecter.model")
+	apiPackage.set("com.uma_ai_selecter.api")
+	modelPackage.set("com.uma_ai_selecter.model")
 	configOptions.set(mapOf(
 		"interfaceOnly" to "true",
 		"useTags" to "true",
