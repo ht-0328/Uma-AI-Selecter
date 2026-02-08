@@ -19,6 +19,8 @@
 - data class を優先して使う
 - Controller は薄く、Service にロジックを寄せる
 - OpenAPI Generator の生成コードは直接編集しない
+- スキーマ駆動開発 (Schema First) を徹底する
+    - APIのリクエスト/レスポンスには、OpenAPIから自動生成されたクラスを必ず使用する（手動でDTOを作成しない）
 
 ## 出力ルール
 - 変更点は必ず理由を説明する
