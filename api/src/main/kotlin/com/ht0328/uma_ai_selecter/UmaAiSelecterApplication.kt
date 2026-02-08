@@ -1,11 +1,11 @@
-package com.example.demo
+package com.ht0328.uma_ai_selecter
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class DemoApplication
+class UmaAiSelecterApplication
 
 fun main(args: Array<String>) {
-	runApplication<DemoApplication>(*args)
+	runApplication<UmaAiSelecterApplication>(*args)
 }

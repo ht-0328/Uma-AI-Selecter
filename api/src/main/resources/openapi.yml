@@ -2,14 +2,6 @@ openapi: 3.0.3
 info:
   title: Uma AI Selecter API
   version: 1.0.0
-tags:
-  - name: News
-paths:
-  /api/news:
-    $ref: './openapi/news.yml#/paths/~1api~1news'
-  /api/news/sync:
-    $ref: './openapi/news.yml#/paths/~1api~1news~1sync'
+paths: {}
 components:
-  schemas:
-    NewsItem:
-      $ref: './openapi/news.yml#/components/schemas/NewsItem'
+  schemas: {}
