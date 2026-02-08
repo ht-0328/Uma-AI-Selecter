@@ -7,9 +7,27 @@ defineProps<{
 
 const stats = ['speed', 'stamina', 'power', 'guts', 'wisdom'] as const
 
+const statLabels: Record<string, string> = {
+  speed: 'スピード',
+  stamina: 'スタミナ',
+  power: 'パワー',
+  guts: '根性',
+  wisdom: '賢さ'
+}
+
 const getConditionText = (cond: number) => {
-  const conditions = ['Worst', 'Bad', 'Normal', 'Good', 'Best']
-  return conditions[cond] || 'Unknown'
+  const conditions = ['絶不調', '不調', '普通', '好調', '絶好調']
+  return conditions[cond] || '不明'
+}
+
+const getStrategyText = (strategy: string) => {
+    const strategies: Record<string, string> = {
+        'Runner': '逃げ',
+        'Leader': '先行',
+        'Betweener': '差し',
+        'Chaser': '追込'
+    }
+    return strategies[strategy] || strategy
 }
 
 const getConditionColor = (cond: number) => {
@@ -26,16 +44,16 @@ const getConditionColor = (cond: number) => {
 
 <template>
   <div class="bg-white p-4 rounded shadow overflow-x-auto">
-    <h3 class="text-lg font-bold mb-4">Ranking</h3>
+    <h3 class="text-lg font-bold mb-4">ランキング</h3>
     <table class="w-full text-left text-sm text-gray-500">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50">
         <tr>
-          <th class="px-4 py-2">Rank</th>
-          <th class="px-4 py-2">Name</th>
-          <th class="px-4 py-2 text-right">Score</th>
-          <th v-for="stat in stats" :key="stat" class="px-4 py-2 text-right capitalize">{{ stat }}</th>
-          <th class="px-4 py-2">Strategy</th>
-          <th class="px-4 py-2">Cond</th>
+          <th class="px-4 py-2">順位</th>
+          <th class="px-4 py-2">馬名</th>
+          <th class="px-4 py-2 text-right">スコア</th>
+          <th v-for="stat in stats" :key="stat" class="px-4 py-2 text-right">{{ statLabels[stat] }}</th>
+          <th class="px-4 py-2">脚質</th>
+          <th class="px-4 py-2">調子</th>
         </tr>
       </thead>
       <tbody>
@@ -44,7 +62,7 @@ const getConditionColor = (cond: number) => {
           <td class="px-4 py-2 font-medium text-gray-900">{{ horse.name }}</td>
           <td class="px-4 py-2 text-right font-bold text-blue-600">{{ horse.score.toFixed(1) }}</td>
           <td v-for="stat in stats" :key="stat" class="px-4 py-2 text-right">{{ horse[stat] }}</td>
-          <td class="px-4 py-2">{{ horse.strategy }}</td>
+          <td class="px-4 py-2">{{ getStrategyText(horse.strategy) }}</td>
           <td class="px-4 py-2">
             <span :class="getConditionColor(horse.condition)">
                 {{ getConditionText(horse.condition) }}
