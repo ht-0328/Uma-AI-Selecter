@@ -2,6 +2,95 @@ openapi: 3.0.3
 info:
   title: Uma AI Selecter API
   version: 1.0.0
-paths: {}
+paths:
+  /races/prediction:
+    get:
+      tags:
+        - Race
+      summary: Get prediction race data
+      operationId: getRacePrediction
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaceDetail'
+
 components:
-  schemas: {}
+  schemas:
+    RaceDetail:
+      type: object
+      required:
+        - race
+        - horses
+      properties:
+        race:
+          $ref: '#/components/schemas/RaceInfo'
+        horses:
+          type: array
+          items:
+            $ref: '#/components/schemas/HorseDetail'
+
+    RaceInfo:
+      type: object
+      required:
+        - name
+        - course
+        - trackCondition
+        - distance
+        - track
+      properties:
+        name:
+          type: string
+        course:
+          type: string
+        trackCondition:
+          type: string
+        distance:
+          type: integer
+        track:
+          type: string
+
+    HorseDetail:
+      type: object
+      required:
+        - id
+        - name
+        - gateNumber
+        - horseNumber
+        - jockeyName
+        - last3f
+        - positionScore
+        - gateScore
+        - courseScore
+        - jockeyScore
+        - passingOrder
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        gateNumber:
+          type: integer
+        horseNumber:
+          type: integer
+        jockeyName:
+          type: string
+        last3f:
+          type: number
+          format: double
+        positionScore:
+          type: number
+          format: double
+        gateScore:
+          type: number
+          format: double
+        courseScore:
+          type: number
+          format: double
+        jockeyScore:
+          type: number
+          format: double
+        passingOrder:
+          type: string

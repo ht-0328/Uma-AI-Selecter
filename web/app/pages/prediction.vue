@@ -1,22 +1,23 @@
 <script setup lang="ts">
 import { BarChart3, Activity } from 'lucide-vue-next'
 
-const { data: horses, pending, error } = await useFetch('/api/mock/races', {
-  lazy: true,
-  transform: (data: any) => data.horses
+const config = useRuntimeConfig()
+const { data, pending, error } = await useFetch('/races/prediction', {
+  baseURL: config.public.apiBaseUrl,
+  lazy: true
 })
 
-// Ensure we have a valid array ref even if loading or error
-const safeHorses = computed(() => horses.value || [])
+const horses = computed(() => data.value?.horses || [])
+const raceInfo = computed(() => data.value?.race || {
+    name: "Loading...",
+    course: "Loading...",
+    trackCondition: "Loading...",
+    distance: 0,
+    track: "Loading..."
+})
 
 // Initialize scoring logic
-const { weights, scoredHorses } = useRaceScoring(safeHorses)
-
-const raceInfo = {
-    name: "Mock G1 Race",
-    course: "Tokyo 2400m",
-    trackCondition: "Turf / Good"
-}
+const { weights, scoredHorses } = useRaceScoring(horses)
 </script>
 
 <template>
