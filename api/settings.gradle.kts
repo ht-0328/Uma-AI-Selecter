@@ -1,1 +1,1 @@
-rootProject.name = "demo"
+rootProject.name = "uma-ai-selecter"
