@@ -94,11 +94,11 @@ const maxScore = computed(() => {
 
             <td class="px-3 lg:px-4 py-2.5">
               <div class="flex items-center justify-center gap-1">
-                <span :class="getGateColor(horse.gate_number)" class="w-5 h-5 flex items-center justify-center text-[10px] font-bold rounded shadow-sm">
-                  {{ horse.gate_number }}
+                <span :class="getGateColor(horse.gateNumber)" class="w-5 h-5 flex items-center justify-center text-[10px] font-bold rounded shadow-sm">
+                  {{ horse.gateNumber }}
                 </span>
-                <span :class="getGateColor(horse.gate_number)" class="w-5 h-5 flex items-center justify-center text-[10px] font-bold rounded shadow-sm">
-                  {{ horse.horse_number }}
+                <span :class="getGateColor(horse.gateNumber)" class="w-5 h-5 flex items-center justify-center text-[10px] font-bold rounded shadow-sm">
+                  {{ horse.horseNumber }}
                 </span>
               </div>
             </td>
@@ -121,11 +121,11 @@ const maxScore = computed(() => {
             </td>
 
             <td class="px-3 lg:px-4 py-2.5 text-center tabular-nums text-xs text-gray-400">
-                {{ horse.passing_order }}
+                {{ horse.passingOrder }}
             </td>
 
             <td class="px-3 lg:px-4 py-2.5 text-sm text-gray-300">
-              {{ horse.jockey_name }}
+              {{ horse.jockeyName }}
             </td>
           </tr>
         </tbody>
